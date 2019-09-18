@@ -1,10 +1,10 @@
-#CMPE 272 - Project Team 16
+# CMPE 272 - Project Team 16
 
 **Team Member**: 
 
 Matthew Brown, Kuang Sheng, Yanlin Song, Mandy Wong
 
-###3 Proposed Project Ideas:
+### 3 Proposed Project Ideas:
 
 **Predict the possibility of power outage under certein weather condition.**
 
