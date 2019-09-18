@@ -6,7 +6,7 @@ Matthew Brown, Kuang Sheng, Yanlin Song, Mandy Wong
 
 ### 3 Proposed Project Ideas:
 
-**Predict the possibility of power outage under certein weather condition.**
+#### 1. Predict the possibility of power outage under certein weather condition
 
 - Project idea description : 
     
@@ -38,13 +38,31 @@ Matthew Brown, Kuang Sheng, Yanlin Song, Mandy Wong
   Machine Learning: Scikit-Learn
 
 
-**spam email**
+#### 2. Spam Email
 
-  - Project idea description : 
-  - Goal of the project (who are your developing the project for) :
-  - Technology stack :
+- Project idea description :
 
-**Predict the home value based on the education**
+    We found a dataset on Kaggle which include 3000 emails which have been classified as either
+    spam or not spam. We think it would be fun to build a web application where users can copy
+    and paste the contents of an email, and the application will attempt to predict whether the
+    email is spam or not.
+
+- Goal of the project :
+
+    Create a machine learning model for predicting whether or not an email is spam. Then use the
+    model to develop a web application for predicting whether or not an email is spam. Anyone who
+    has received an email they are unsure about can paste its contents into the web application and
+    hopefully find out whether or not it is spam.
+
+- Technology stack :
+
+    Frontend: Angular or React/Redux.
+
+    Backend: Python/Flask
+
+    Machine Learning: NLTK
+
+#### 3. Predict the home value based on the education
 
 - Project idea description : 
     
