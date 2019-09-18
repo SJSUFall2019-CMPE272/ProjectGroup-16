@@ -15,7 +15,7 @@ Matthew Brown, Kuang Sheng, Yanlin Song, Mandy Wong
     possiblilty of power outage under certein weather condition. 
     
     First, Analyze the most common causes for the power outage and how it impact 
-    correlated to the historical weather data from IBM The Weather Company. 
+    correlated to the historical weather data from IBM The Weather Company Data. 
     According to the data, we can then predict the possibility of power outages under 
     certain weather condition (eg. raining, sunny, ice, windy, etc.) and estimate 
     how many people in that region will be affected.
