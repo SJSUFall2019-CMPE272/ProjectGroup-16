@@ -4,6 +4,10 @@
 
 Matthew Brown, Kuang Sheng, Yanlin Song, Mandy Wong
 
+APPROVED - HomeValue - predict the home value (read below)
+yesterday there was a news that Trader Joe and Whole foods are contributing to the rise in proce of homes in the area. This is interesting because a) people wants to live in walking distance to these organic grocery stores b) more house owners may be looking to NOT own cars etc,,,
+why dont you combine education, healthy habits, millenial trends and other metrics to provide house buying guides for users.
+
 ### 3 Proposed Project Ideas:
 
 #### 1. Predict the possibility of power outage under certein weather condition
