@@ -10,7 +10,9 @@ Buying a house is a tough decision with lots of consideration like size, locatio
 
 By using this web application, user can put in their requirments of their "dream" house like whether they have kids or pets, if they own a car or any preference of the living environments. The web application will be providing the list of houses that the best matching the user's requirements. The result will also include how good the school district is, how far from nearby stores/parks/public transportation, the crime rate, population, employment rate and income, etc. 
 
-## Architecture diagram
+## Architecture Diagram
+
+![Architecture Diagram](https://github.com/SJSUFall2019-CMPE272/HomeValue/blob/master/architecture.svg)
 
 ## Technology Stack
 
