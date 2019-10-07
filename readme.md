@@ -12,7 +12,7 @@ By using this web application, user can put in their requirments of their "dream
 
 ## Architecture Diagram
 
-![Architecture Diagram](https://github.com/SJSUFall2019-CMPE272/HomeValue/blob/master/architecture.svg)
+![Architecture Diagram](https://github.com/SJSUFall2019-CMPE272/HomeValue/blob/master/architecture.pdf)
 
 ## Technology Stack
 
