@@ -12,7 +12,7 @@ By using this web application, user can put in their requirments of their "dream
 
 ## Architecture Diagram
 
-![Architecture Diagram](https://github.com/SJSUFall2019-CMPE272/HomeValue/blob/master/architecture.svg)
+![Architecture Diagram](https://github.com/SJSUFall2019-CMPE272/HomeValue/blob/master/architecture.png)
 
 ## Technology Stack
 
@@ -25,6 +25,3 @@ Machine Learning: Scikit-Learn
 ## Team Members   
 
 Matthew Brown, Mandy Wong, Kuang Sheng, Yanlin Song
-
-
-
