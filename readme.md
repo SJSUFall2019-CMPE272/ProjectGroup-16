@@ -22,6 +22,9 @@ BackEnd: NodeJS, Java, Python
   
 Machine Learning: Scikit-Learn
 
+## User Persona
+![User Persona](https://github.com/SJSUFall2019-CMPE272/HomeValue/blob/master/user_persona.png)
+
 ## Team Members   
 
 Matthew Brown, Mandy Wong, Kuang Sheng, Yanlin Song
