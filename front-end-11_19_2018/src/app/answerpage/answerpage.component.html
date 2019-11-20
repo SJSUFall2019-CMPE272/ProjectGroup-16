@@ -1,0 +1,24 @@
+<h2>
+  Please answer following questions
+</h2>
+
+
+<div *ngFor="let qqq of Questions;index as questionid">
+
+<h3> 
+  {{qqq.Question_name }}
+
+</h3>
+
+<a [title]="qqq.Question_name" [routerLink]="['/question',questionid]">
+</a>
+
+<button (click)= "YES(qqq)" >
+  Yes
+</button>
+
+<button (click)= "NO(qqq)" >
+  No
+</button>
+
+</div>
