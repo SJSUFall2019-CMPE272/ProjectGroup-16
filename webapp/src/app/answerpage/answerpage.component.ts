@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import {Questions} from '../question';
@@ -8,7 +8,7 @@ import {AnswerlistService} from '../answerlist.service'
 @Component({
   selector: 'app-answerpage',
   templateUrl: './answerpage.component.html',
-  styleUrls: ['./answerpage.component.css']
+  // styleUrls: ['./answerpage.component.css']
 })
 
 
@@ -22,7 +22,7 @@ export class AnswerpageComponent implements OnInit {
 
   NO(qqq){
     window.alert('no picked');
-    this.AnswerlistService.NO(qqq);
+    this.AnswerlistService.No(qqq);
   }
 
   
@@ -31,5 +31,8 @@ export class AnswerpageComponent implements OnInit {
     private route: ActivatedRoute,
     private AnswerlistService: AnswerlistService
   ) { }
+
+  ngOnInit() {
+  }
 
 }
