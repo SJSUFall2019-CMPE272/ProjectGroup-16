@@ -2,5 +2,5 @@
   <h1>HouseValue</h1>
 </a>
 
-<a [routerLink]="['/answerlistpage']" class="button fancy-button"><i class="button"> checkanswer</i>
+<a *ngIf="router.url !== '/'" [routerLink]="['/answerlistpage']" class="button fancy-button"><i class="button"> checkanswer</i>
 </a>
