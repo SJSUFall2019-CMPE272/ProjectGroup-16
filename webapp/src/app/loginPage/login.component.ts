@@ -8,7 +8,7 @@ import * as firebaseui from 'firebaseui';
 })
 
 
-export class LoginPage implements OnInit {
+export class LoginPage {
   constructor() {
     var firebaseConfig = {
       // TODO: Add back config
@@ -18,7 +18,7 @@ export class LoginPage implements OnInit {
     firebase.initializeApp(firebaseConfig);
 
     var uiConfig = {
-      signInSuccessUrl: '/answer',
+      signInSuccessUrl: '/dashboard',
       signInOptions: [
         // Leave the lines as is for the providers you want to offer your users.
         firebase.auth.GoogleAuthProvider.PROVIDER_ID,
@@ -43,9 +43,6 @@ export class LoginPage implements OnInit {
     var ui = new firebaseui.auth.AuthUI(firebase.auth());
     // The start method will wait until the DOM is loaded.
     ui.start('#firebaseui-auth-container', uiConfig);
-  }
-
-  ngOnInit() {
   }
 
 }

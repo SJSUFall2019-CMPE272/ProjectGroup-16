@@ -1,16 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-topbar',
   templateUrl: './topbar.component.html',
-  // styleUrls: ['./topbar.component.css']
+  styleUrls: ['./topbar.component.css']
 })
-export class TopbarComponent implements OnInit {
-
-  constructor(private router: Router) { }
-
-  ngOnInit() {
-  }
-
+export class TopbarComponent {
+  constructor() { }
 }

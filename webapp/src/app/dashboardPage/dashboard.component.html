@@ -1,0 +1,42 @@
+<button class="filterButton" *ngIf="submitted" (click)="showFilter = !showFilter">
+  <i class="fas fa-filter"></i>
+</button>
+
+<div [hidden]="!showFilter" class="filters">
+  <h2>
+    Please answer following questions
+  </h2>
+
+  <div *ngFor="let question of QUESTION_LIST | keyvalue">
+    <h3>
+      {{question.value.name}}
+    </h3>
+    <div class="selection">
+      <span>No</span>
+      <label class="switch">
+        <input type="checkbox" [(ngModel)]="filters[question.key]">
+        <span class="slider round"></span>
+      </label>
+      <span>Yes</span>
+    </div>
+  </div>
+
+  <div class="submission">
+    <button (click)="submit()">
+      Submit
+    </button>
+  </div>
+</div>
+
+<div *ngIf="loadingResults">
+  <i class="fas fa-sync-alt fa-spin"></i>
+</div>
+<div [hidden]="!submitted || loadingResults">
+  <h3>
+    Here's the results we found:
+  </h3>
+
+  <div class="answerlistpage-list" *ngFor="let result of results">
+    <span>{{ result.address }}</span>
+  </div>
+</div>

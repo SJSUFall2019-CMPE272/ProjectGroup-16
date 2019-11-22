@@ -1,28 +1,34 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { LoginPage } from './loginPage/login.component';
+import { DashboardPage } from './dashboardPage/dashboard.component';
 import { TopbarComponent } from './topbar/topbar.component';
-import { AnswerpageComponent } from './answerpage/answerpage.component';
-import { AnswerlistService } from './answerlist.service';
-import { AnswerlistpageComponent } from './answerlistpage/answerlistpage.component';
+import { ApiService } from './api.service';
 
 @NgModule({
-  imports:      [ BrowserModule,
-  ReactiveFormsModule,
-  RouterModule.forRoot([
-    {path: '', component: LoginPage},
-    {path:'answer',component:AnswerpageComponent},
-    {path:'answerlistpage',component:AnswerlistpageComponent}
-  ])
+  imports:[
+    BrowserModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule,
+    RouterModule.forRoot([
+      {path: '', component: LoginPage},
+      {path:'dashboard',component:DashboardPage}
+    ])
   ],
 
-  declarations: [ AppComponent, LoginPage,
-  TopbarComponent, AnswerpageComponent, AnswerlistpageComponent ],
+  declarations: [
+    AppComponent,
+    LoginPage,
+    DashboardPage,
+    TopbarComponent
+  ],
   bootstrap:    [ AppComponent ],
-  providers: [AnswerlistService]
+  providers: [ ApiService ]
 })
 export class AppModule { }
