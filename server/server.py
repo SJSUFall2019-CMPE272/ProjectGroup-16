@@ -1,6 +1,8 @@
 from flask import Flask, request
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 # ----------------------------------------------------------------------------
 # Helper Function Definitions.
@@ -12,7 +14,7 @@ def getHousingData():
     retVal = {}
     housingData = []
     # Note: You will need to replace this with the path to the dataset on your machine.
-    file = open("/Users/matthewbrown/Documents/CMPE272/ProjectGroup-16/server/datasets/finalDataSet.csv", "r")
+    file = open("./datasets/finalDataSet.csv", "r")
     for line in file:
         if line.split(",")[0] != "address":
             house = {}
@@ -49,6 +51,7 @@ def hello():
 # This endpoint will return all of the housing data.
 @app.route("/houses")
 def houses():
+
     return housingData
 
 # This starts the server and listens for requests.
