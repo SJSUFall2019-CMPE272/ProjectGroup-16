@@ -2,6 +2,8 @@ import { Component, OnInit} from '@angular/core';
 import * as firebase from 'firebase/app';
 import * as firebaseui from 'firebaseui';
 
+import { FIREBASE_CONFIG } from '../config';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html'
@@ -10,12 +12,8 @@ import * as firebaseui from 'firebaseui';
 
 export class LoginPage {
   constructor() {
-    var firebaseConfig = {
-      // TODO: Add back config
-    };
-
     // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
+    firebase.initializeApp(FIREBASE_CONFIG);
 
     var uiConfig = {
       signInSuccessUrl: '/dashboard',

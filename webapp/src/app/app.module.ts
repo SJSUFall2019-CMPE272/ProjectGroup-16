@@ -9,6 +9,7 @@ import { LoginPage } from './loginPage/login.component';
 import { DashboardPage } from './dashboardPage/dashboard.component';
 import { TopbarComponent } from './topbar/topbar.component';
 import { ApiService } from './api.service';
+import { MapService } from './map.service';
 
 @NgModule({
   imports:[
@@ -29,6 +30,6 @@ import { ApiService } from './api.service';
     TopbarComponent
   ],
   bootstrap:    [ AppComponent ],
-  providers: [ ApiService ]
+  providers: [ ApiService, MapService ]
 })
 export class AppModule { }

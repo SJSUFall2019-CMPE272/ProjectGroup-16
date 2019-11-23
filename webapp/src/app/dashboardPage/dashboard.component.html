@@ -2,7 +2,7 @@
   <i class="fas fa-filter"></i>
 </button>
 
-<div [hidden]="!showFilter" class="filters">
+<div [hidden]="!showFilter" class="filters" [ngClass]="{popover: submitted}">
   <h2>
     Please answer following questions
   </h2>
@@ -31,12 +31,18 @@
 <div *ngIf="loadingResults">
   <i class="fas fa-sync-alt fa-spin"></i>
 </div>
-<div [hidden]="!submitted || loadingResults">
+<div class="result-list-container" [hidden]="!submitted || loadingResults">
   <h3>
     Here's the results we found:
   </h3>
 
-  <div class="answerlistpage-list" *ngFor="let result of results">
-    <span>{{ result.address }}</span>
+  <div style="display: flex">
+    <div id="map"></div>
+
+    <div class="result-list">
+      <div *ngFor="let result of results">
+        <span>{{ result.address }}</span>
+      </div>
+    </div>
   </div>
 </div>

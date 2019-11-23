@@ -1,6 +1,7 @@
 import { Component} from '@angular/core';
 import {QUESTION_LIST} from '../constants';
 import { ApiService } from '../api.service';
+import { MapService } from '../map.service';
 
 
 @Component({
@@ -17,7 +18,7 @@ export class DashboardPage {
   private showFilter = true;
   private loadingResults = false;
 
-  constructor(private apiService: ApiService) {
+  constructor(private apiService: ApiService, private mapService: MapService) {
     Object.keys(QUESTION_LIST).forEach((key) => {
       this.filters[key] = false;
     });
@@ -29,10 +30,18 @@ export class DashboardPage {
     this.showFilter = false;
     localStorage.setItem('filters', JSON.stringify(this.filters));
     this.loadingResults = true;
+    this.mapService.initMap();
     this.apiService.getResults(this.filters)
         .subscribe(
             response => {
-              this.results = response && response['housingData'];
+              this.results = response && response['housingData'] || [];
+              this.results.forEach((result, index) => {
+                if (index === 0) {
+                  this.mapService.setCenter(result.latitude, result.longitude);
+                }
+                if (index > 10) return;
+                this.mapService.addMarker(result.latitude, result.longitude, (index + 1).toString());
+              });
               this.loadingResults = false;
             },
             error => {
