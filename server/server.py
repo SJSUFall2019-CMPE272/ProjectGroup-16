@@ -1,5 +1,7 @@
 from flask import Flask, request
 from flask_cors import CORS
+import math
+import heapq
 
 app = Flask(__name__)
 CORS(app)
@@ -11,7 +13,6 @@ CORS(app)
 # This function opens the housing data file and returns an object containing
 # all of the data.
 def getHousingData():
-    retVal = {}
     housingData = []
     # Note: You will need to replace this with the path to the dataset on your machine.
     file = open("./datasets/finalDataSet.csv", "r")
@@ -22,7 +23,8 @@ def getHousingData():
             if len(houseList) == 11:
                 house["address"] = houseList[0]
             else:
-                house["address"] = ",".join(houseList[0:len(houseList) - 11])
+                house["address"] = ",".join(houseList[0:len(houseList) - 10]).replace('"', '')
+                print(house["address"])
             house["city"] = houseList[-10]
             house["state"] = houseList[-9]
             house["zipCode"] = int(houseList[-8])
@@ -34,11 +36,43 @@ def getHousingData():
             house["distanceFromPublicTransportation"] = float(houseList[-2])
             house["distanceFromWholeFoods"] = float(houseList[-1])
             housingData.append(house)
-    retVal["housingData"] = housingData
-    return retVal
+    return housingData
 
 # This is to initialize the housing data and put it into a list of objects.
 housingData = getHousingData()
+
+# This function returns the euclidian distance between two vectors.
+def getEuclidianDistance(v1, v2):
+    total = 0
+    for i in range(len(v1)):
+        total += (v1[i] - v2[i]) ** 2
+    return math.sqrt(total)
+
+def sortHouses(houses, checkStores, checkTransit, checkParks):
+    h = []
+    for i in range(len(houses)):
+        currentVec = []
+        idealVec = []
+        # TODO: Add another conditional statement here for Parks.
+        if checkStores == "true":
+            currentVec.append(houses[i]["distanceFromWholeFoods"])
+            idealVec.append(0.01)
+        if checkTransit == "true":
+            currentVec.append(houses[i]["distanceFromPublicTransportation"])
+            idealVec.append(0.01)
+        # Calculate the similarity.
+        similarity = getEuclidianDistance(currentVec, idealVec)
+        # Put the house into a heap. This will make it easier to sort them
+        # once they've all been given similarity scores. The way heapq works
+        # with tuples is it will compare the first item in the tuple, then
+        # the second and so on. We pass in 'i' to guarantee that it won't try
+        # to compare the houses because that would result in a type error.
+        heapq.heappush(h, (similarity, i, houses[i]))
+    sortedHouses = []
+    # Pop items from the heap until it is empty and append them to the list.
+    while len(h) > 0:
+        sortedHouses.append(heapq.heappop(h)[2])
+    return sortedHouses
 
 # ----------------------------------------------------------------------------
 # Endpoint Definitions.
@@ -51,8 +85,16 @@ def hello():
 # This endpoint will return all of the housing data.
 @app.route("/houses")
 def houses():
-
-    return housingData
+    # Pull out the query parameters.
+    checkStores = request.args.get("checkStores")
+    checkTransit = request.args.get("checkTransit")
+    checkParks = request.args.get("checkParks")
+    # Sort the data based on our query parameters.
+    sortedData = sortHouses(housingData, checkStores, checkTransit, checkParks)
+    # Return a new object containing the sorted data.
+    retVal = {}
+    retVal["housingData"] = sortedData
+    return retVal
 
 # This starts the server and listens for requests.
 # If you are running this locally you can open your browser to "localhost:5000/"
