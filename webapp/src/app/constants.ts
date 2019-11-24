@@ -1,6 +1,6 @@
 export const QUESTION_LIST= {
   stores: {
-    name:'Do you want to live close to food?',
+    name:'Do you want to live close to Whole Food?',
   },
 
   transit: {

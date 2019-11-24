@@ -17,6 +17,8 @@ export class DashboardPage {
   private submitted = false;
   private showFilter = true;
   private loadingResults = false;
+  private viewLimit = 0;
+  private eachViewLimit = 20;
 
   constructor(private apiService: ApiService, private mapService: MapService) {
     Object.keys(QUESTION_LIST).forEach((key) => {
@@ -25,23 +27,32 @@ export class DashboardPage {
     console.log(localStorage);
   }
 
+  setMapCenter(lat, lng) {
+    this.mapService.setCenter(lat, lng);
+  }
+
+  increaseLimit() {
+    this.results.slice(this.viewLimit, this.viewLimit + this.eachViewLimit).forEach((result, index) => {
+      if (index === 0) {
+        this.setMapCenter(result.latitude, result.longitude);
+      }
+      this.mapService.addMarker(result.latitude, result.longitude, (index + 1 + this.viewLimit).toString());
+    });
+    this.viewLimit += this.eachViewLimit;
+  }
+
   submit() {
     this.submitted = true;
     this.showFilter = false;
     localStorage.setItem('filters', JSON.stringify(this.filters));
     this.loadingResults = true;
+    this.viewLimit = 0;
     this.mapService.initMap();
     this.apiService.getResults(this.filters)
         .subscribe(
             response => {
               this.results = response && response['housingData'] || [];
-              this.results.forEach((result, index) => {
-                if (index === 0) {
-                  this.mapService.setCenter(result.latitude, result.longitude);
-                }
-                if (index > 10) return;
-                this.mapService.addMarker(result.latitude, result.longitude, (index + 1).toString());
-              });
+              this.increaseLimit();
               this.loadingResults = false;
             },
             error => {

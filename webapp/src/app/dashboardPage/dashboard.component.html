@@ -40,9 +40,23 @@
     <div id="map"></div>
 
     <div class="result-list">
-      <div *ngFor="let result of results">
-        <span>{{ result.address }}</span>
+      <div class="result"
+           *ngFor="let result of results | slice:0:viewLimit ; index as index"
+           (click)="setMapCenter(result.latitude, result.longitude)">
+        <div class="index">{{index + 1}}</div>
+        <div>
+          <div>{{ result.address }}</div>
+          <div>{{result.city}}, {{ result.state }} {{ result.zipCode }}</div>
+        </div>
+        <div><b title="Whole Food"><i class="fas fa-shopping-cart"></i></b> {{ result.distanceFromWholeFoods | number: '1.0-2' }}<i>mi away</i></div>
+        <div><b title="Public Transportation"><i class="fas fa-bus"></i></b> {{ result.distanceFromPublicTransportation | number: '1.0-2' }}<i>mi away</i></div>
+        <div><b title="Number of Rooms"><i class="fas fa-bed"></i></b> {{ result.numberOfRooms }} room</div>
+        <div><b title="Footage"><i class="fas fa-shoe-prints"></i></b> {{ result.squareFeet | number: '1.0-2' }} sq ft.</div>
+        <div><b>${{ result.price | number: '1.0-2' }}</b></div>
       </div>
+      <button *ngIf="viewLimit < results.length" (click)="increaseLimit()">
+        View More
+      </button>
     </div>
   </div>
 </div>

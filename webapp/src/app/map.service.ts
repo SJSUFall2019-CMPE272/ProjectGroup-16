@@ -20,16 +20,22 @@ export class MapService {
     // @ts-ignore
     this.map = new google.maps.Map(document.getElementById('map'), {
       center: {lat: -34.397, lng: 150.644},
-      zoom: 8
+      zoom: 12
     });
   }
 
   setCenter(lat, lng) {
     this.map.setCenter({lat, lng});
+    this.map.setZoom(12);
   }
 
   addMarker(lat, lng, label) {
     // @ts-ignore
-    return new google.maps.Marker({position: {lat, lng}, label, map: this.map});
+    return new google.maps.Marker({
+      position: {lat, lng},
+      label,
+      icon: 'assets/house_icon.png',
+      map: this.map
+    });
   }
 }

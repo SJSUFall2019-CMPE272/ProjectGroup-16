@@ -73,6 +73,7 @@ input:checked + .slider:before {
 
 
 .filterButton {
+  color: #616161;
   position: absolute;
   left: 2rem;
   background: transparent;
@@ -94,8 +95,8 @@ input:checked + .slider:before {
 
 #map {
   background: black;
-  width: calc(50% - 2rem);
-  height: 60vh;
+  height: calc(100vh - 190px - 2rem);
+  width: calc(50% - 1rem);
 }
 
 .result-list-container {
@@ -105,4 +106,50 @@ input:checked + .slider:before {
 
 .result-list {
   margin-left: 2rem;
+  height: calc(100vh - 190px - 2rem);
+  width: calc(50% - 1rem);
+  overflow: auto;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 1rem;
+}
+
+.result {
+  padding: 1rem;
+  position: relative;
+  cursor: pointer;
+}
+
+.result:hover * {
+  color: #0065A3;
+}
+
+.result:hover div b svg {
+  color: #0065A3;
+  fill: #0065A3;
+}
+
+.result div b svg {
+  margin-right: 0.5rem;
+}
+.result > div:not(:last-child) {
+  margin-bottom: 0.5rem;
+}
+
+.result:not(:last-child) {
+  margin-bottom: 1rem;
+}
+
+.result .index {
+  position: absolute;
+  top: -0.5rem;
+  left: -0.4rem;
+  background: #0065A3;
+  color: white;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
