@@ -20,21 +20,22 @@ def getHousingData():
         if line.split(",")[0] != "address":
             house = {}
             houseList = line.split(",")
-            if len(houseList) == 11:
+            if len(houseList) == 12:
                 house["address"] = houseList[0]
             else:
-                house["address"] = ",".join(houseList[0:len(houseList) - 10]).replace('"', '')
+                house["address"] = ",".join(houseList[0:len(houseList) - 11]).replace('"', '')
                 print(house["address"])
-            house["city"] = houseList[-10]
-            house["state"] = houseList[-9]
-            house["zipCode"] = int(houseList[-8])
-            house["latitude"] = float(houseList[-7])
-            house["longitude"] = float(houseList[-6])
-            house["numberOfRooms"] = int(houseList[-5])
-            house["squareFeet"] = int(houseList[-4])
-            house["price"] = int(houseList[-3])
-            house["distanceFromPublicTransportation"] = float(houseList[-2])
-            house["distanceFromWholeFoods"] = float(houseList[-1])
+            house["city"] = houseList[-11]
+            house["state"] = houseList[-10]
+            house["zipCode"] = int(houseList[-9])
+            house["latitude"] = float(houseList[-8])
+            house["longitude"] = float(houseList[-7])
+            house["numberOfRooms"] = int(houseList[-6])
+            house["squareFeet"] = int(houseList[-5])
+            house["price"] = int(houseList[-4])
+            house["distanceFromPublicTransportation"] = float(houseList[-3])
+            house["distanceFromWholeFoods"] = float(houseList[-2])
+            house["distanceFromParks"] = float(houseList[-1])
             housingData.append(house)
     return housingData
 
@@ -53,12 +54,14 @@ def sortHouses(houses, checkStores, checkTransit, checkParks):
     for i in range(len(houses)):
         currentVec = []
         idealVec = []
-        # TODO: Add another conditional statement here for Parks.
         if checkStores == "true":
             currentVec.append(houses[i]["distanceFromWholeFoods"])
             idealVec.append(0.01)
         if checkTransit == "true":
             currentVec.append(houses[i]["distanceFromPublicTransportation"])
+            idealVec.append(0.01)
+        if checkParks == "true":
+            currentVec.append(houses[i]["distanceFromParks"])
             idealVec.append(0.01)
         # Calculate the similarity.
         similarity = getEuclidianDistance(currentVec, idealVec)
