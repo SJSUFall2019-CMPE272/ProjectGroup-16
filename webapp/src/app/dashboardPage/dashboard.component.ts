@@ -33,7 +33,7 @@ export class DashboardPage {
         break;
       }
       this.results[i].marker.setZIndex(this.results.length - (i + 1));
-    })
+    }
     this.mapService.setCenter(result.latitude, result.longitude);
     result.marker.setZIndex(this.results.length);
   }
