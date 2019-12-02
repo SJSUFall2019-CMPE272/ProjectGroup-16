@@ -1,3 +1,4 @@
 webapp/node_modules/*
 .idea/*
 server/credentials.py
+__pycache__
