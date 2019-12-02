@@ -2,3 +2,4 @@ webapp/node_modules/*
 .idea/*
 server/credentials.py
 __pycache__
+.env
