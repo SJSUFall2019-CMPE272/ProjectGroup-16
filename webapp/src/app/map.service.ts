@@ -18,10 +18,7 @@ export class MapService {
 
   initMap() {
     // @ts-ignore
-    this.map = new google.maps.Map(document.getElementById('map'), {
-      center: {lat: -34.397, lng: 150.644},
-      zoom: 12
-    });
+    this.map = new google.maps.Map(document.getElementById('map'));
   }
 
   setCenter(lat, lng) {
@@ -29,13 +26,17 @@ export class MapService {
     this.map.setZoom(12);
   }
 
-  addMarker(lat, lng, label) {
+  addMarker(lat, lng, label, zIndex) {
     // @ts-ignore
     return new google.maps.Marker({
       position: {lat, lng},
-      label,
+      label: {
+        fontWeight: '900',
+        text: label
+      },
       icon: 'assets/house_icon.png',
-      map: this.map
+      map: this.map,
+      zIndex
     });
   }
 }

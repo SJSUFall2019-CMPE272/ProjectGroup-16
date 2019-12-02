@@ -19,34 +19,42 @@ export class DashboardPage {
   private loadingResults = false;
   private viewLimit = 0;
   private eachViewLimit = 20;
+  private clicked = 0;
 
   constructor(private apiService: ApiService, private mapService: MapService) {
     Object.keys(QUESTION_LIST).forEach((key) => {
       this.filters[key] = false;
     });
-    console.log(localStorage);
   }
 
-  setMapCenter(lat, lng) {
-    this.mapService.setCenter(lat, lng);
+  setMapCenter(result) {
+    for (let i = 0; i < this.results.length; i++) {
+      if (!this.results[i].marker) {
+        break;
+      }
+      this.results[i].marker.setZIndex(this.results.length - (i + 1));
+    })
+    this.mapService.setCenter(result.latitude, result.longitude);
+    result.marker.setZIndex(this.results.length);
   }
 
   increaseLimit() {
+    let setMapCenter = this.setMapCenter;
+    let vm = this;
     this.results.slice(this.viewLimit, this.viewLimit + this.eachViewLimit).forEach((result, index) => {
-      if (index === 0) {
-        this.setMapCenter(result.latitude, result.longitude);
-      }
-      this.mapService.addMarker(result.latitude, result.longitude, (index + 1 + this.viewLimit).toString());
+      result.marker = this.mapService.addMarker(result.latitude, result.longitude, (index + 1 + this.viewLimit).toString(), this.results.length - (index + 1 + this.viewLimit));
+      result.marker.addListener('click', this.setMapCenter.bind(this, result))
     });
+    this.setMapCenter(this.results[this.viewLimit]);
     this.viewLimit += this.eachViewLimit;
   }
 
   submit() {
     this.submitted = true;
     this.showFilter = false;
-    localStorage.setItem('filters', JSON.stringify(this.filters));
     this.loadingResults = true;
     this.viewLimit = 0;
+    this.clicked = 0;
     this.mapService.initMap();
     this.apiService.getResults(this.filters)
         .subscribe(
@@ -56,7 +64,7 @@ export class DashboardPage {
               this.loadingResults = false;
             },
             error => {
-              alert('error happened')
+              alert('error happened');
               this.results = [];
               this.loadingResults = false;
             }
