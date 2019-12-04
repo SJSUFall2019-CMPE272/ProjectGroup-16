@@ -3,3 +3,4 @@ webapp/node_modules/*
 server/credentials.py
 __pycache__
 .env
+*DS_Store*
