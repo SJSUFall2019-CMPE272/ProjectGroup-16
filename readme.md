@@ -20,11 +20,9 @@ A millenial looking to buy their first home can retrieve a list of houses for sa
 
 ## Technology Stack
 
-FrontEnd: HTML, CSS, JavaScript, Angular/React
+FrontEnd: HTML, CSS, JavaScript, Angular
 
-BackEnd: NodeJS, Java, Python
-  
-Machine Learning: Scikit-Learn
+BackEnd: Python
 
 ## User Persona
 ![User Persona](https://github.com/SJSUFall2019-CMPE272/HomeValue/blob/master/user_persona.png)
